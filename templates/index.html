@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCS Uploader Demo</title>
+    <!-- Menggunakan Tailwind CSS untuk styling cepat dan bagus -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold text-blue-600">GCS Uploader</h1>
+            <p class="text-gray-500 text-sm mt-2">Demo Cloud Run & Cloud Storage</p>
+        </div>
+
+        <!-- Menampilkan Pesan Flash (Error/Sukses) -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="mb-4">
+              {% for message in messages %}
+                <div class="p-3 rounded {{ 'bg-green-100 text-green-700' if 'Sukses' in message else 'bg-red-100 text-red-700' }} text-sm mb-2">
+                    {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Form Upload -->
+        <form method="post" enctype="multipart/form-data" class="space-y-4">
+            
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-500 transition-colors">
+                <label class="cursor-pointer block">
+                    <span class="block text-gray-400 mb-2">Klik untuk pilih file</span>
+                    <input type="file" name="file" class="block w-full text-sm text-slate-500
+                      file:mr-4 file:py-2 file:px-4
+                      file:rounded-full file:border-0
+                      file:text-sm file:font-semibold
+                      file:bg-blue-50 file:text-blue-700
+                      hover:file:bg-blue-100
+                    "/>
+                </label>
+            </div>
+
+            <div class="text-xs text-gray-500 text-center">
+                Target Bucket: <strong>{{ bucket_name }}</strong>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">
+                Upload ke Cloud Storage
+            </button>
+        </form>
+
+        <div class="mt-6 text-center border-t pt-4">
+            <p class="text-xs text-gray-400">Google Cloud Training Demo</p>
+        </div>
+    </div>
+
+</body>
+</html>
