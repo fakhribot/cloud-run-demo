@@ -9,7 +9,7 @@ Pastikan Anda sudah memiliki akses ke Google Cloud Console dan Cloud Shell (atau
 ## **Langkah 1: Persiapan Environment (Di Cloud Shell)**
 
 1. **Set Project ID**  
-   Ganti PROJECT_ID_ANDA dengan ID project GCP Anda.  
+   Ganti `PROJECT_ID_ANDA` dengan ID project GCP Anda.  
 ```
    gcloud config set project PROJECT_ID_ANDA
 ```
@@ -98,7 +98,11 @@ Jika saat upload Anda mendapatkan error 403 Forbidden, lakukan langkah ini:
 Agar tidak terkena biaya setelah training selesai, hapus resource yang dibuat:
 
 # Hapus Service Cloud Run  
+```
 gcloud run services delete gcs-uploader-demo --region asia-southeast2 --quiet
+```
 
-\# Hapus Bucket dan seluruh isinya  
-gcloud storage rm \--recursive gs://$BUCKET\_NAME  
+# Hapus Bucket dan seluruh isinya  
+```
+gcloud storage rm --recursive gs://$BUCKET_NAME  
+```
