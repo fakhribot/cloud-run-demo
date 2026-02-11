@@ -4,13 +4,10 @@ from google.cloud import storage
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = "training-demo-key"  # Diperlukan untuk flash messages
+app.secret_key = "training-demo-key" 
 
-# Konfigurasi Upload
-# Nama bucket akan diambil dari Environment Variable di Cloud Run
 CLOUD_STORAGE_BUCKET = os.environ.get('CLOUD_STORAGE_BUCKET')
 
-# Ekstensi file yang diperbolehkan (Opsional, untuk keamanan)
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'csv', 'json'}
 
 def allowed_file(filename):
